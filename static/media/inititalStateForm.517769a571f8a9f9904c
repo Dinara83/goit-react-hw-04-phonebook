@@ -1,5 +1,0 @@
-const inititalStateForm = {
-  name: '',
-  number: '',
-};
-export default inititalStateForm;
