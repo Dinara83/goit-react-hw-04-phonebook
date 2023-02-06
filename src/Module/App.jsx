@@ -9,10 +9,7 @@ import initialContacts from 'services/contacts.json';
 import css from './App.module.css';
 
 const App = () => {
-  const [contacts, setContacts] = useState([...initialContacts], () => {
-    const contacts = JSON.pars(localStorage.getItem('my contacts'));
-    return contacts ? contacts : [];
-  });
+  const [contacts, setContacts] = useState(() => JSON.parse(window.localStorage.getItem('my contacts')) ?? [...initialContacts]);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {

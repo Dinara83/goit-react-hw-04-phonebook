@@ -3,25 +3,31 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import css from './contact-form.module.css';
-import inititalStateForm from 'services/inititalStateForm';
 
 const ContactForm = ({ onSubmitForm }) => {
-  const [state, setState] = useState({ ...inititalStateForm });
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
   const handleChange = evt => {
     const { name, value } = evt.currentTarget;
-    setState(prevState => {
-      return { ...prevState, [name]: value };
-    });
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+      case 'number':
+        setNumber(value);
+        break;
+      default:
+        return;
+    }
   };
 
   const handleSubmit = evt => {
     evt.preventDefault();
     onSubmitForm({ name, number });
-    setState({ ...inititalStateForm });
+    setName('');
+    setNumber('');
   };
-
-  const { name, number } = state;
 
   return (
     <form className={css.wrapper} onSubmit={handleSubmit}>
